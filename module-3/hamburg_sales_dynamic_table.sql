@@ -4,7 +4,7 @@ USE DATABASE tasty_bytes;
 
 CREATE OR REPLACE DYNAMIC TABLE tasty_bytes.raw_pos.daily_sales_hamburg
 WAREHOUSE = 'COMPUTE_WH'
-TARGET_LAG =  
+TARGET_LAG = '1 minute' 
 AS
 SELECT
     CAST(oh.ORDER_TS AS DATE) AS date,
@@ -51,13 +51,16 @@ INSERT INTO tasty_bytes.raw_pos.order_header (
     '08:00:00',                    -- SHIFT_START_TIME
     '16:00:00',                    -- SHIFT_END_TIME
     null,                          -- ORDER_CHANNEL
-    '2024-03-09 12:30:45',         -- ORDER_TS
+    '2024-03-09 12:45:45',         -- ORDER_TS
     null,                          -- SERVED_TS
     'USD',                         -- ORDER_CURRENCY
-    12.00,                         -- ORDER_AMOUNT
+    25.00,                         -- ORDER_AMOUNT
     null,                          -- ORDER_TAX_AMOUNT
     null,                          -- ORDER_DISCOUNT_AMOUNT
-    12.35                          -- ORDER_TOTAL
+    25.50                          -- ORDER_TOTAL
 );
 
 SELECT * FROM tasty_bytes.raw_pos.daily_sales_hamburg;
+
+-- inactivate
+drop table tasty_bytes.raw_pos.daily_sales_hamburg; 
