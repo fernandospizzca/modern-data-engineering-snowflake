@@ -244,6 +244,23 @@ LEFT JOIN tasty_bytes.raw_customer.customer_loyalty cl
    ON oh.customer_id = cl.customer_id;
 
 
+select * from tasty_bytes.raw_pos.truck where country = 'Germany';
+
+select DATE(order_ts), * from tasty_bytes.harmonized.orders_v where country = 'Germany';
+
+select od.order_id,
+oh.order_id,
+oh.truck_id,
+t.truck_id,
+t.primary_city,
+t.country
+FROM tasty_bytes.raw_pos.order_detail od
+JOIN tasty_bytes.raw_pos.order_header oh
+   ON od.order_id = oh.order_id
+JOIN tasty_bytes.raw_pos.truck t
+   ON oh.truck_id = t.truck_id
+where t.country = 'India';
+
 -- loyalty_metrics_v view
 CREATE OR REPLACE VIEW tasty_bytes.harmonized.customer_loyalty_metrics_v
    AS

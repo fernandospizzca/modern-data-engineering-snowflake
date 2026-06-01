@@ -27,6 +27,8 @@ WHERE 1=1
 GROUP BY fd.date_valid_std, fd.city_name, fd.country_desc
 ORDER BY fd.date_valid_std ASC;
 
+select DATE(order_ts), * from harmonized.orders_v where country = 'Germany';
+
 select * from harmonized.weather_hamburg;
 
 -- Expand tracking to all cities and deploy view with this new information
