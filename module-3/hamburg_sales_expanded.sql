@@ -27,6 +27,10 @@ WHERE 1=1
 GROUP BY fd.date_valid_std, fd.city_name, fd.country_desc
 ORDER BY fd.date_valid_std ASC;
 
+select DATE(order_ts), * from harmonized.orders_v where country = 'Germany';
+
+select * from harmonized.weather_hamburg;
+
 -- Expand tracking to all cities and deploy view with this new information
 CREATE OR REPLACE VIEW analytics.daily_city_metrics_v
 COMMENT = 'Daily Weather Metrics and Orders Data'
@@ -47,3 +51,7 @@ LEFT JOIN tasty_bytes.harmonized.orders_v odv
     AND fd.city_name = odv.primary_city
     AND fd.country_desc = odv.country
 GROUP BY fd.date_valid_std, fd.city_name, fd.country_desc;
+
+select * from analytics.daily_city_metrics_v;
+
+select * from TASTY_BYTES.HARMONIZED.DAILY_WEATHER_V;

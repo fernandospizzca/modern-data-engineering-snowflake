@@ -4,9 +4,18 @@ import altair as alt
 from snowflake.snowpark.context import get_active_session
 import pandas as pd
 from snowflake.snowpark.functions import col
+from snowflake.snowpark import Session
+
+st.set_page_config(page_title='Weather and Sales Trends for Hamburg', layout='wide')
 
 # Get the current credentials
-session = get_active_session()
+try:
+    session = get_active_session()
+except Exception:
+    session = Session.builder.config("connection_name", "modern_data_engineering_snowflake").create()
+
+# alt.renderers.enable('html')
+alt.renderers.enable('default')
 
 st.title('Weather and Sales Trends for Hamburg, Germany')
 
@@ -51,4 +60,4 @@ chart = alt.Chart(hamburg_weather_long).mark_line(point=True).encode(
 )
 
 # Display the chart in the Streamlit app
-st.altair_chart(chart, use_container_width=True)
+st.altair_chart(chart, width="stretch")

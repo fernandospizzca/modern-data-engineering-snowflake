@@ -43,7 +43,7 @@ INSERT INTO tasty_bytes.raw_pos.order_header (
     '08:00:00',                    -- SHIFT_START_TIME
     '16:00:00',                    -- SHIFT_END_TIME
     null,                          -- ORDER_CHANNEL
-    '2024-01-12 12:30:45',         -- ORDER_TS
+    '2022-06-12 12:30:45',         -- ORDER_TS
     null,                          -- SERVED_TS
     'USD',                         -- ORDER_CURRENCY
     22.00,                         -- ORDER_AMOUNT

@@ -6,7 +6,7 @@ USE DATABASE tasty_bytes;
 CREATE OR REPLACE NOTIFICATION INTEGRATION email_notification_int
 TYPE = EMAIL
 ENABLED = TRUE
-ALLOWED_RECIPIENTS = ('email@address.com');  -- Update the recipient's email here
+ALLOWED_RECIPIENTS = ('fernando.spizzca@gmail.com');  -- Update the recipient's email here
 
 CREATE OR REPLACE PROCEDURE tasty_bytes.raw_pos.last_seven_days_report()
 RETURNS STRING
@@ -82,7 +82,7 @@ def send_email(session: Session) -> str:
     # Send the email
     session.call("system$send_email",
                  "email_notification_int",
-                 "email@address.com",
+                 "fernando.spizzca@gmail.com",
                  "Weekly Sales Report for Hamburg",
                  email_content,
                  "text/html")
